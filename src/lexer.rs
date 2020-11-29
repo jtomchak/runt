@@ -4,6 +4,29 @@ use std::iter::Peekable;
 use std::mem;
 use std::str::Chars;
 
+pub struct Lexer {
+    input: String,
+    // Current position of input
+    position: usize,
+    // current reading position of input (after current char)
+    read_position: usize,
+    // current character under examination
+    ch: char,
+}
+
+impl Lexer {
+    pub fn new(input: &str) -> Self {
+        let mut lexer = Lexer {
+            input: input.to_string(),
+            position: 0,
+            read_position: 0,
+            ch: '\u{0}',
+        };
+        lexer.read_char();
+        lexer
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use crate::lexer::Lexer;
